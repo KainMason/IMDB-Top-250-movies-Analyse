@@ -9,7 +9,7 @@ git clone <https://github.com/KainMason/IMDB-Top-250-movies-Analyse.git>
 Alternatively, you can download the files by clicking the "Code" button on the repository page and selecting "Download ZIP".
 2. Install the required libraries: pandas, matplotlib, seaborn, and tkinter. You can install them by running the following command in your terminal:
 pip install pandas matplotlib seaborn tkinter
-3. Open a terminal or command prompt and navigate to the directory where the `movie_search_gui.py` script is located.
+3. Open a terminal or command prompt and navigate to the directory where the `MovieAnaylize.py` script is located.
 4. Run the `MovieAnaylize.py` script by typing the following command:
 python MovieAnaylize.py
 Alternatively, you can run the script in an integrated development environment (IDE) such as PyCharm or VSCode by opening the `movie_search_gui.py` file and clicking the "Run" button.

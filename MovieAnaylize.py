@@ -78,7 +78,7 @@ def search_movies():
 
 # Create the main window
 window = tk.Tk()
-window.title("Movie Search")
+window.title("IMDB-Top-250-movies-Analyse")
 
 # Create tabs
 tab_parent = ttk.Notebook(window)

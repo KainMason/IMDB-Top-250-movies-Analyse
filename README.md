@@ -1,6 +1,60 @@
 # IMDB-Top-250-movies-Analyse
 
-This Python script creates a graphical user interface (GUI) using the tkinter and ttk libraries to search for movies and visualize movie data.
+As a movie enthusiast and data analyst, I always wanted to explore the data behind the movies I love. That's why I decided to create a Python script that uses the IMDB Top 250 movies dataset to visualize movie data in a user-friendly GUI. The GUI has Three tabs that allow me to explore different types of movie data, such as the number of movies by genre, top directors by box office revenue, and movies released in a specific year.
+Overall, this project has been a great learning experience for me, as I was able to apply my knowledge of Python and data analysis to a real-world problem that I was passionate about. I hope that others will find this project useful and enjoyable for exploring the fascinating world of movies!
+## Code Louisville Project Requirements
+1. Read in data from a local csv,
+excel file, json, or any other
+file type. There are many
+ways to do this, but using
+Pandas read_ functions is
+pretty easy.
+* How I'll do it: I will read csv file " moviesData.csv" and use it for the rest of my project.
+2. Use built-in pandas or numpy
+functions to do things like
+remove 0’s and null values
+where they don’t belong in
+your dataset.
+* How I'll do it:  Replace 'Not Available' values in box_office column with NaN when using the data to chart the top movies by box office sales
+3. Write custom functions to
+operate on your data. You
+may discover that you want to
+find out something particular
+about data that just doesn’t
+have a built-in Pandas
+function that accomplishes
+your goal. Maybe you want
+your function to read in a
+DataFrame, search the
+columns for any mention of
+“Cars”, then return the
+lowest-priced car in the
+column along with the
+mileage. This category is very
+open to interpretation, so any
+function operating on your
+data will work.
+*How I'll do it:
+*Define function to search for movies by year
+*Define function to get top directors by box office revenue
+*Define function to get top genres by number of movies
+
+4. Use a GUI library like tkinter
+to make an interactive
+visualization. Again, a few
+students find this interesting
+and it makes for truly unique
+projects. This is something
+incredible to show off to
+employers, but you may not
+have time to do it in the class
+which is completely okay.
+* How I'll do it: Put the entire project in a GUI using tkinter and give charts to visualize Data
+5. If using some format other
+than a notebook, make sure
+your README explains your
+project.
+* How I'll do it: Create detailed .README
 
 ## Getting Started
 

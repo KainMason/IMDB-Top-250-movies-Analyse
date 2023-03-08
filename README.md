@@ -14,7 +14,7 @@ pretty easy.
 
 * How I'll do it: I will read csv file " moviesData.csv" and use it for the rest of my project.
 
-<https://github.com/KainMason/IMDB-Top-250-movies-Analyse/blob/880e94c6ef2dbd7a21cceed919e27ab83596215d/MovieAnaylize.py#L8>
+<https://github.com/KainMason/IMDB-Top-250-movies-Analyse/blob/988eb2dd153dc7109a68653ae6347011eae6a661/MovieAnaylize.py#L8>
 
 2.Use built-in pandas or numpy
 functions to do things like
@@ -23,7 +23,7 @@ where they don’t belong in
 your dataset.
 
 * How I'll do it:  Replace 'Not Available' values in box_office column with NaN when using the data to chart the top movies by box office sales
-
+<https://github.com/KainMason/IMDB-Top-250-movies-Analyse/blob/988eb2dd153dc7109a68653ae6347011eae6a661/MovieAnaylize.py#L12>
 3.Write custom functions to
 operate on your data. You
 may discover that you want to
@@ -44,8 +44,11 @@ function operating on your
 data will work.
 *How I'll do it:
 *Define function to search for movies by year
+<https://github.com/KainMason/IMDB-Top-250-movies-Analyse/blob/988eb2dd153dc7109a68653ae6347011eae6a661/MovieAnaylize.py#L70>
 *Define function to get top directors by box office revenue
+<https://github.com/KainMason/IMDB-Top-250-movies-Analyse/blob/988eb2dd153dc7109a68653ae6347011eae6a661/MovieAnaylize.py#L40>
 *Define function to get top genres by number of movies
+<https://github.com/KainMason/IMDB-Top-250-movies-Analyse/blob/988eb2dd153dc7109a68653ae6347011eae6a661/MovieAnaylize.py#L22>
 
 4.Use a GUI library like tkinter
 to make an interactive
@@ -59,7 +62,7 @@ have time to do it in the class
 which is completely okay.
 
 * How I'll do it: Put the entire project in a GUI using tkinter and give charts to visualize Data
-
+<https://github.com/KainMason/IMDB-Top-250-movies-Analyse/blob/988eb2dd153dc7109a68653ae6347011eae6a661/MovieAnaylize.py#L84>
 5.If using some format other
 than a notebook, make sure
 your README explains your

@@ -10,6 +10,7 @@ ways to do this, but using
 Pandas read_ functions is
 pretty easy.
 * How I'll do it: I will read csv file " moviesData.csv" and use it for the rest of my project.
+https://github.com/KainMason/IMDB-Top-250-movies-Analyse/blob/9050876d8f5ec37532908d6cf5e811797d867610/MovieAnaylize.py#L8
 2. Use built-in pandas or numpy
 functions to do things like
 remove 0’s and null values

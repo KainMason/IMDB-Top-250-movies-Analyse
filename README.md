@@ -5,7 +5,7 @@ Overall, this project has been a great learning experience for me, as I was able
 
 ## Code Louisville Project Requirements
 
-1. Read in data from a local csv,
+1.Read in data from a local csv,
 excel file, json, or any other
 file type. There are many
 ways to do this, but using
@@ -13,7 +13,8 @@ Pandas read_ functions is
 pretty easy.
 
 * How I'll do it: I will read csv file " moviesData.csv" and use it for the rest of my project.
-<[def]>
+
+<https://github.com/KainMason/IMDB-Top-250-movies-Analyse/blob/880e94c6ef2dbd7a21cceed919e27ab83596215d/MovieAnaylize.py#L8>
 
 2.Use built-in pandas or numpy
 functions to do things like
@@ -22,7 +23,7 @@ where they don’t belong in
 your dataset.
 
 * How I'll do it:  Replace 'Not Available' values in box_office column with NaN when using the data to chart the top movies by box office sales
-<[def2]>
+
 3.Write custom functions to
 operate on your data. You
 may discover that you want to
@@ -43,11 +44,9 @@ function operating on your
 data will work.
 *How I'll do it:
 *Define function to search for movies by year
-<[def3]>
 *Define function to get top directors by box office revenue
-<[def4]>
 *Define function to get top genres by number of movies
-<[def5]>
+
 4.Use a GUI library like tkinter
 to make an interactive
 visualization. Again, a few
@@ -60,7 +59,7 @@ have time to do it in the class
 which is completely okay.
 
 * How I'll do it: Put the entire project in a GUI using tkinter and give charts to visualize Data
-<[def6]>
+
 5.If using some format other
 than a notebook, make sure
 your README explains your
@@ -100,10 +99,3 @@ The dataset used in this script is `moviesData.csv`, which contains information 
 ## Acknowledgements
 
 This script was inspired by a tutorial on [Real Python](https://realpython.com/python-gui-tkinter/) and uses the `moviesData.csv` dataset from [Kaggle](https://www.kaggle.com/PromptCloud
-
-[def]: ttps://github.com/KainMason/IMDB-Top-250-movies-Analyse/blob/880e94c6ef2dbd7a21cceed919e27ab83596215d/MovieAnaylize.py#L
-[def2]: ttps://github.com/KainMason/IMDB-Top-250-movies-Analyse/blob/880e94c6ef2dbd7a21cceed919e27ab83596215d/MovieAnaylize.py#L1
-[def3]: ttps://github.com/KainMason/IMDB-Top-250-movies-Analyse/blob/880e94c6ef2dbd7a21cceed919e27ab83596215d/MovieAnaylize.py#L2
-[def4]: ttps://github.com/KainMason/IMDB-Top-250-movies-Analyse/blob/880e94c6ef2dbd7a21cceed919e27ab83596215d/MovieAnaylize.py#L4
-[def5]: ttps://github.com/KainMason/IMDB-Top-250-movies-Analyse/blob/880e94c6ef2dbd7a21cceed919e27ab83596215d/MovieAnaylize.py#L7
-[def6]: ttps://github.com/KainMason/IMDB-Top-250-movies-Analyse/blob/880e94c6ef2dbd7a21cceed919e27ab83596215d/MovieAnaylize.py#L8

@@ -1,3 +1,4 @@
+import mplcursors
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -5,12 +6,10 @@ import tkinter as tk
 from tkinter import ttk
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
-# Load the data from CSV file
-#This CODE meets requirement 1 of the CODE LOUISVILLE PROJECT LISTED IN THE .README
+# Load the data from the CSV file
 df = pd.read_csv('moviesData.csv')
 
 # Replace 'Not Available' values in box_office column with NaN
-#This CODE meets requirement 2 of the CODE LOUISVILLE PROJECT LISTED IN THE .README
 df['box_office'] = df['box_office'].replace('Not Available', pd.NaT)
 
 # Convert box_office to integer
@@ -19,31 +18,49 @@ df['box_office'] = pd.to_numeric(df['box_office'], errors='coerce').astype('Int6
 # Sort the dataframe by box_office in descending order
 df = df.sort_values('box_office', ascending=False)
 
-# Define function to get top genres by number of movies
-#This CODE meets requirement 3(fig.1) of the CODE LOUISVILLE PROJECT LISTED IN THE .README
+# Define a function to get the top genres by the number of movies
 def get_top_genres_by_num_movies(df, num_genres=10):
+    # Count the occurrences of each genre and select the top num_genres
     genre_counts = df['genre'].value_counts()[:num_genres]
     return genre_counts
 
-# Define function to plot number of movies by genre
-def plot_num_movies_by_genre(tab, genre_counts):
-    plt.figure(figsize=(12, 6))
-    sns.barplot(x=genre_counts.index, y=genre_counts.values)
-    plt.title('Number of Movies by Genre')
-    plt.xlabel('Genre')
-    plt.ylabel('Number of Movies')
-    plt.xticks(rotation=90)
-    canvas = FigureCanvasTkAgg(plt.gcf(), master=tab)
-    canvas.draw()
-    canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
+# Define a function to plot the number of movies by genre
+import matplotlib.patches as mpatches
 
-# Define function to get top directors by box office revenue
-#This CODE meets requirement 3(fig.2) of the CODE LOUISVILLE PROJECT LISTED IN THE .README
+def plot_num_movies_by_genre(tab, genre_counts):
+    fig, ax = plt.subplots()
+    barplot = sns.barplot(x=genre_counts.index, y=genre_counts.values, ax=ax)
+    mplcursors.cursor(ax, hover=True).connect("add", lambda sel: sel.annotation.set_text(f"{genre[sel.target.index]}: {genre_counts[sel.target.index]} movies"))
+    ax.set_title('Number of Movies by Genre')
+    ax.set_xlabel('Genre')
+    ax.set_ylabel('Number of Movies')
+    ax.set_xticklabels([])  # Remove x-axis labels
+
+    # Create custom legend
+    legend_patches = []
+    for index, genre in enumerate(genre_counts.index):
+        color = barplot.patches[index].get_facecolor()
+        legend_patch = mpatches.Patch(color=color, label=genre)
+        legend_patches.append(legend_patch)
+    
+    ax.legend(handles=legend_patches, loc='upper right', bbox_to_anchor=(1.15, 1))
+
+    canvas = FigureCanvasTkAgg(fig, master=tab)
+    canvas.draw()
+    canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=True, anchor=tk.CENTER)
+
+
+# Define a function to get the top directors by box office revenue
 def get_top_directors_by_box_office(df, num_directors=10):
     director_revenues = {}
+    
+    # Iterate through each row in the DataFrame
     for _, row in df.iterrows():
+        # Split the directors by comma and get the box_office value
         directors = row['directors'].split(',')
         box_office = row['box_office']
+        
+        # If the box_office value is not NaN, add the revenue to the director's total
         if pd.notna(box_office):
             for director in directors:
                 director = director.strip()
@@ -51,38 +68,64 @@ def get_top_directors_by_box_office(df, num_directors=10):
                     director_revenues[director] += box_office
                 else:
                     director_revenues[director] = box_office
+                    
+    # Sort the directors by their total revenue and select the top num_directors
     top_directors = sorted(director_revenues.items(), key=lambda x: x[1], reverse=True)[:num_directors]
     return top_directors
 
-# Define function to plot top directors by box office revenue
-def plot_top_directors_by_box_office(tab, top_directors):
-    plt.figure(figsize=(12, 6))
-    directors, revenues = zip(*top_directors)
-    plt.bar(directors, revenues)
-    plt.title('Top Directors by Box Office Revenue')
-    plt.xlabel('Director')
-    plt.ylabel('Box Office Revenue (USD)')
-    plt.xticks(rotation=90)
-    canvas = FigureCanvasTkAgg(plt.gcf(), master=tab)
-    canvas.draw()
-    canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
+# Define a function to plot the top directors by box office revenue
+import matplotlib.patches as mpatches
 
-# Define function to search for movies by year
-#This CODE meets requirement 3 (fig.3) of the CODE LOUISVILLE PROJECT LISTED IN THE .README
+def plot_top_directors_by_box_office(tab, top_directors):
+    fig, ax = plt.subplots()
+    directors, revenues = zip(*top_directors)
+
+    # Use a custom color palette for the bars
+    color_palette = sns.color_palette("hls", len(directors))
+
+    barplot = sns.barplot(x=list(directors), y=list(revenues), palette=color_palette, ax=ax)
+    mplcursors.cursor(ax, hover=True).connect("add", lambda sel: sel.annotation.set_text(f"{directors[sel.target.index]}: ${revenues[sel.target.index]:,.0f}"))
+
+
+    ax.set_title('Top Directors by Box Office Revenue')
+    ax.set_xlabel('Director')
+    ax.set_ylabel('Box Office Revenue (USD)')
+    ax.set_xticklabels([])  # Remove x-axis labels
+
+    # Create custom legend
+    legend_patches = []
+    for index, director in enumerate(directors):
+        color = barplot.patches[index].get_facecolor()
+        legend_patch = mpatches.Patch(color=color, label=director)
+        legend_patches.append(legend_patch)
+    
+    ax.legend(handles=legend_patches, loc='upper right', bbox_to_anchor=(1.15, 1))
+
+    canvas = FigureCanvasTkAgg(fig, master=tab)
+    canvas.draw()
+    canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=True, anchor=tk.CENTER)
+
+# Define a function to search for movies by year
 def search_movies():
     year = search_entry.get()
     try:
+        # Convert the input to an integer
         year = int(year)
+
+        # Filter the DataFrame by the specified year
         movies = df[df['year'] == year]
         movies = movies[['rank', 'name', 'year', 'rating']]
-        output.delete('1.0', tk.END)  # clear previous output
+
+        # Display the search results in the output text box
+        output.delete('1.0', tk.END)  # Clear previous output
         output.insert(tk.END, movies.to_string(index=False))
+
     except ValueError:
-        output.delete('1.0', tk.END)  # clear previous output
+        # Display an error message if the input is not a valid year
+        output.delete('1.0', tk.END)  # Clear previous output
         output.insert(tk.END, "Please enter a valid year")
 
 # Create the main window
-#This CODE meets requirement 4 of the CODE LOUISVILLE PROJECT LISTED IN THE .README
 window = tk.Tk()
 window.title("IMDB-Top-250-movies-Analyse")
 
@@ -94,7 +137,6 @@ style = ttk.Style(window)
 style.configure('lefttab.TNotebook', tabposition='wn', borderwidth=0)
 style.configure('lefttab.TNotebook.Tab', padding=(15,10), width=20, foreground="gray")
 style.map('lefttab.TNotebook.Tab', background=[('selected', 'white')], foreground=[('selected', '#0B72B9')])
-
 
 # Create home tab that explains the project and each tab
 home_tab = ttk.Frame(tab_parent)
@@ -123,6 +165,7 @@ search_label.pack(pady=10, anchor="w")
 
 search_desc_label = tk.Label(home_tab, text="This tab allows the user to filter the movies by year.", font=('Arial', 12))
 search_desc_label.pack(pady=10, anchor="w")
+
 # Create first tab for number of movies by genre
 genre_tab = ttk.Frame(tab_parent)
 tab_parent.add(genre_tab, text="Number of Movies by Genre")
@@ -130,9 +173,11 @@ tab_parent.add(genre_tab, text="Number of Movies by Genre")
 # Create second tab for top directors by box office revenue
 director_tab = ttk.Frame(tab_parent)
 tab_parent.add(director_tab, text="Top Directors by Box Office Revenue")
+
 # Create third tab for filtering movies by year
 search_tab = ttk.Frame(tab_parent)
 tab_parent.add(search_tab, text="Search By Year")
+
 # Add search widgets and output text box to main window
 search_label = tk.Label(search_tab, text="Search by Year")
 search_label.pack()
@@ -155,6 +200,15 @@ plot_top_directors_by_box_office(director_tab, top_directors)
 
 tab_parent.pack(expand=1, fill='both')
 
+
+def quit_me(window):
+    window.quit()
+    window.destroy()
+
+window.protocol("WM_DELETE_WINDOW", lambda: quit_me(window))
+
 # Run the main loop
 window.mainloop()
+
+
 

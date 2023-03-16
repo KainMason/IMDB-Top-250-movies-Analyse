@@ -141,8 +141,33 @@ window.title("IMDB-Top-250-movies-Analyse")
 tab_parent = ttk.Notebook(window)
 
 # Create home tab that explains the project and each tab
+# Create home tab that explains the project and each tab
 home_tab = ttk.Frame(tab_parent)
 tab_parent.add(home_tab, text="Home")
+
+home_label = tk.Label(home_tab, text="Welcome to IMDB-Top-250-movies-Analyse!", font=('Arial', 18, 'bold'))
+home_label.pack(pady=20)
+
+description_label = tk.Label(home_tab, text="This project analyzes data on top 250 movies from IMDb and provides insights through visualization.", font=('Arial', 14))
+description_label.pack(pady=20)
+
+genre_label = tk.Label(home_tab, text="Number of Movies by Genre", font=('Arial', 16, 'bold'))
+genre_label.pack(pady=10, anchor="w")
+
+genre_desc_label = tk.Label(home_tab, text="This tab displays the number of movies by genre!", font=('Arial', 12))
+genre_desc_label.pack(pady=10, anchor="w")
+
+director_label = tk.Label(home_tab, text="Top Directors by Box Office Revenue", font=('Arial', 16, 'bold'))
+director_label.pack(pady=10, anchor="w")
+
+director_desc_label = tk.Label(home_tab, text="This tab displays the top directors by box office revenue.", font=('Arial', 12))
+director_desc_label.pack(pady=10, anchor="w")
+
+search_label = tk.Label(home_tab, text="Search By Year", font=('Arial', 16, 'bold'))
+search_label.pack(pady=10, anchor="w")
+
+search_desc_label = tk.Label(home_tab, text="This tab allows the user to filter the movies by year.", font=('Arial', 12))
+search_desc_label.pack(pady=10, anchor="w")
 
 # Create first tab for number of movies by genre
 genre_tab = ttk.Frame(tab_parent)

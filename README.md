@@ -102,3 +102,7 @@ The dataset used in this script is `moviesData.csv`, which contains information 
 ## Acknowledgements
 
 This script was inspired by the `moviesData.csv` dataset from [Kaggle](https://www.kaggle.com/PromptCloud
+
+## Disclaimer
+
+After testing in class the program works on windows, not mac

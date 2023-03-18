@@ -1,11 +1,11 @@
-import mplcursors
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import tkinter as tk
 from tkinter import ttk
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-import matplotlib.patches as mpatches
+
 # Load the data from the CSV file
 df = pd.read_csv('moviesData.csv')
 
@@ -30,7 +30,6 @@ import matplotlib.patches as mpatches
 def plot_num_movies_by_genre(tab, genre_counts):
     fig, ax = plt.subplots()
     barplot = sns.barplot(x=genre_counts.index, y=genre_counts.values, ax=ax)
-    mplcursors.cursor(ax, hover=True).connect("add", lambda sel: sel.annotation.set_text(f"{genre[sel.target.index]}: {genre_counts[sel.target.index]} movies"))
     ax.set_title('Number of Movies by Genre')
     ax.set_xlabel('Genre')
     ax.set_ylabel('Number of Movies')
@@ -83,9 +82,6 @@ def plot_top_directors_by_box_office(tab, top_directors):
     color_palette = sns.color_palette("hls", len(directors))
 
     barplot = sns.barplot(x=list(directors), y=list(revenues), palette=color_palette, ax=ax)
-    mplcursors.cursor(ax, hover=True).connect("add", lambda sel: sel.annotation.set_text(f"{directors[sel.target.index]}: ${revenues[sel.target.index]:,.0f}"))
-
-
     ax.set_title('Top Directors by Box Office Revenue')
     ax.set_xlabel('Director')
     ax.set_ylabel('Box Office Revenue (USD)')
@@ -147,31 +143,16 @@ style.map('lefttab.TNotebook.Tab', background=[('selected', 'white')], foregroun
 home_tab = ttk.Frame(tab_parent)
 tab_parent.add(home_tab, text="Home")
 
-home_label = tk.Label(home_tab, text="Welcome to IMDB-Top-250-movies-Analyse!", font=('Arial', 18, 'bold'))
+home_label = tk.Label(home_tab, text="Welcome to IMDB-Top-250-movies-Analyse!", font=('Arial', 18, 'bold'), bg=bg_color, fg=fg_color)
 home_label.pack(pady=20)
 
-description_label = tk.Label(home_tab, text="This project analyzes data on top 250 movies from IMDb and provides insights through visualization.", font=('Arial', 14))
+description_label = tk.Label(home_tab, text="This project analyzes data on top 250 movies from IMDb and provides insights through visualization.", font=('Arial', 14), wraplength=400, justify='left', bg=bg_color, fg=fg_color)
 description_label.pack(pady=20)
 
-genre_label = tk.Label(home_tab, text="Number of Movies by Genre", font=('Arial', 16, 'bold'))
-genre_label.pack(pady=10, anchor="w")
+info_label = tk.Label(home_tab, text="Each tab provides a different analysis:\n1. Number of Movies by Genre\n2. Top Directors by Box Office Revenue\n3. Search Movies by Year", font=('Arial', 14), wraplength=400, justify='left', bg=bg_color, fg=fg_color)
+info_label.pack(pady=20)
 
-genre_desc_label = tk.Label(home_tab, text="This tab displays the number of movies by genre.", font=('Arial', 12))
-genre_desc_label.pack(pady=10, anchor="w")
-
-director_label = tk.Label(home_tab, text="Top Directors by Box Office Revenue", font=('Arial', 16, 'bold'))
-director_label.pack(pady=10, anchor="w")
-
-director_desc_label = tk.Label(home_tab, text="This tab displays the top directors by box office revenue.", font=('Arial', 12))
-director_desc_label.pack(pady=10, anchor="w")
-
-search_label = tk.Label(home_tab, text="Search By Year", font=('Arial', 16, 'bold'))
-search_label.pack(pady=10, anchor="w")
-
-search_desc_label = tk.Label(home_tab, text="This tab allows the user to filter the movies by year.", font=('Arial', 12))
-search_desc_label.pack(pady=10, anchor="w")
-
-# Create first tab for number of movies by genre
+# Create genre tab
 genre_tab = ttk.Frame(tab_parent)
 tab_parent.add(genre_tab, text="Movies by Genre")
 

@@ -5,7 +5,7 @@ import seaborn as sns
 import tkinter as tk
 from tkinter import ttk
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-
+import matplotlib.patches as mpatches
 # Load the data from the CSV file
 df = pd.read_csv('moviesData.csv')
 
@@ -128,6 +128,12 @@ def search_movies():
 window = tk.Tk()
 window.title("IMDB-Top-250-movies-Analyse")
 
+# Set dark theme colors
+bg_color = "#2b2b2b"
+fg_color = "#ffffff"
+
+window.config(bg=bg_color)
+
 # Create tabs
 tab_parent = ttk.Notebook(window)
 
@@ -167,47 +173,37 @@ search_desc_label.pack(pady=10, anchor="w")
 
 # Create first tab for number of movies by genre
 genre_tab = ttk.Frame(tab_parent)
-tab_parent.add(genre_tab, text="Number of Movies by Genre")
+tab_parent.add(genre_tab, text="Movies by Genre")
 
-# Create second tab for top directors by box office revenue
+# Plot the number of movies by genre in the genre tab
+top_genres = get_top_genres_by_num_movies(df)
+plot_num_movies_by_genre(genre_tab, top_genres)
+
+# Create director tab
 director_tab = ttk.Frame(tab_parent)
-tab_parent.add(director_tab, text="Top Directors by Box Office Revenue")
+tab_parent.add(director_tab, text="Top Directors")
 
-# Create third tab for filtering movies by year
-search_tab = ttk.Frame(tab_parent)
-tab_parent.add(search_tab, text="Search By Year")
-
-# Add search widgets and output text box to main window
-search_label = tk.Label(search_tab, text="Search by Year")
-search_label.pack()
-search_entry = tk.Entry(search_tab)
-search_entry.pack()
-search_button = tk.Button(search_tab, text="Search", command=search_movies)
-search_button.pack()
-output_label = tk.Label(search_tab, text="Search Results:")
-output_label.pack()
-output = tk.Text(search_tab)
-output.pack()
-
-# Plot number of movies by genre on the first tab
-genre_counts = get_top_genres_by_num_movies(df)
-plot_num_movies_by_genre(genre_tab, genre_counts)
-
-# Plot top directors by box office revenue on the second tab
+# Plot the top directors by box office revenue in the director tab
 top_directors = get_top_directors_by_box_office(df)
 plot_top_directors_by_box_office(director_tab, top_directors)
 
-tab_parent.pack(expand=1, fill='both')
+# Create search tab
+search_tab = ttk.Frame(tab_parent)
+tab_parent.add(search_tab, text="Search Movies by Year")
 
+search_label = tk.Label(search_tab, text="Enter the year:", bg=bg_color, fg=fg_color)
+search_label.pack(pady=10)
 
-def quit_me(window):
-    window.quit()
-    window.destroy()
+search_entry = tk.Entry(search_tab)
+search_entry.pack(pady=10)
 
-window.protocol("WM_DELETE_WINDOW", lambda: quit_me(window))
+search_button = tk.Button(search_tab, text="Search", command=search_movies, bg=bg_color, fg=fg_color)
+search_button.pack(pady=10)
 
-# Run the main loop
+output = tk.Text(search_tab, height=10, width=60, bg=bg_color, fg=fg_color)
+output.pack(pady=10)
+
+tab_parent.pack(expand=True, fill="both")
+
 window.mainloop()
-
-
 

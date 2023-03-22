@@ -43,7 +43,7 @@ git clone https://github.com/KainMason/IMDB-Top-250-movies-Analyse.git
 - Install Anaconda or Miniconda if you haven't already.
 - Install the required packages:
   ```
-  conda install pandas matplotlib seaborn tk
+  pip install pandas matplotlib seaborn tk
   ```
 
 ## Usage

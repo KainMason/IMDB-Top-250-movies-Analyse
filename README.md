@@ -41,8 +41,6 @@ git clone https://github.com/KainMason/IMDB-Top-250-movies-Analyse.git
   ```
 2. This project uses a Conda environment with Python 3.9.13.
 - Install Anaconda or Miniconda if you haven't already.
-
-  ```
 - Install the required packages:
   ```
   conda install pandas matplotlib seaborn tk

@@ -39,8 +39,7 @@ This project is my Code Louisville: Data Analyst Pathway project, which focuses 
   ```
 git clone https://github.com/KainMason/IMDB-Top-250-movies-Analyse.git
   ```
-2. This project uses a Conda environment with Python 3.9.13.
-- Install Anaconda or Miniconda if you haven't already.
+2. This project uses Python 3.9.13.
 - Install the required packages:
   ```
   pip install pandas matplotlib seaborn tk

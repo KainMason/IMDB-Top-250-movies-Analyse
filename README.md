@@ -39,15 +39,9 @@ This project is my Code Louisville: Data Analyst Pathway project, which focuses 
   ```
 git clone https://github.com/KainMason/IMDB-Top-250-movies-Analyse.git
   ```
-2. This project uses a Conda environment with Python 3.9.13. To create a new Conda environment, follow these steps:
+2. This project uses a Conda environment with Python 3.9.13.
 - Install Anaconda or Miniconda if you haven't already.
-- Create a new Conda environment using the following command:
-  ```
-  conda create --name imdb-analyze python=3.9.13
-  ```
-- Activate the Conda environment:
-  ```
-  conda activate imdb-analyze
+
   ```
 - Install the required packages:
   ```

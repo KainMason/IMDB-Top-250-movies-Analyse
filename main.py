@@ -5,6 +5,7 @@ import tkinter as tk
 from tkinter import ttk
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
+
 # Load the data from the CSV file
 df = pd.read_csv('moviesData.csv')
 
@@ -184,6 +185,12 @@ output = tk.Text(search_tab, height=10, width=60, bg=bg_color, fg=fg_color)
 output.pack(pady=10)
 
 tab_parent.pack(expand=True, fill="both")
+
+
+
+
+
+
 
 window.mainloop()
 

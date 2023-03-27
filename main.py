@@ -149,7 +149,7 @@ home_label.pack(pady=20)
 description_label = tk.Label(home_tab, text="This project analyzes data on top 250 movies from IMDb and provides insights through visualization.", font=('Arial', 14), wraplength=400, justify='left', bg=bg_color, fg=fg_color)
 description_label.pack(pady=20)
 
-info_label = tk.Label(home_tab, text="Each tab provides a different analysis:\n1. Number of Movies by Genre\n2. Top Directors by Box Office Revenue\n3. Search Movies by Year", font=('Arial', 14), wraplength=400, justify='left', bg=bg_color, fg=fg_color)
+info_label = tk.Label(home_tab, text="Each tab provides a different analysis:\n1. Number of Movies by Genre\n2. Top Directors by Box Office Revenue\n3. Search Movies by Year\n4. Top 10 movies by Word count \n5. Conclusion ", font=('Arial', 14), wraplength=400, justify='left', bg=bg_color, fg=fg_color)
 info_label.pack(pady=20)
 
 # Create genre tab
@@ -188,8 +188,65 @@ tab_parent.pack(expand=True, fill="both")
 
 
 
+# Define a function to get the top 10 movie title word counts by box office revenue
+def get_top_title_word_counts_by_box_office(df):
+    title_word_counts_revenue = {}
+    
+    # Iterate through each row in the DataFrame
+    for _, row in df.iterrows():
+        # Get the movie title, word count, and box_office value
+        title = row['name']
+        word_count = len(title.split())
+        box_office = row['box_office']
+        
+        # If the box_office value is not NaN, add the revenue to the word count's total
+        if pd.notna(box_office):
+            if word_count in title_word_counts_revenue:
+                title_word_counts_revenue[word_count] += box_office
+            else:
+                title_word_counts_revenue[word_count] = box_office
+    
+    # Sort the word counts by their total revenue and select the top 10
+    top_title_word_counts = sorted(title_word_counts_revenue.items(), key=lambda x: x[1], reverse=True)[:10]
+    return top_title_word_counts
+
+# Define a function to plot the top 10 movie title word counts by box office revenue
+def plot_top_title_word_counts_by_box_office(tab, top_title_word_counts):
+    fig, ax = plt.subplots()
+    counts, revenues = zip(*top_title_word_counts)
+
+    # Use a custom color palette for the bars
+    color_palette = sns.color_palette("hls", len(counts))
+
+    barplot = sns.barplot(x=list(counts), y=list(revenues), palette=color_palette, ax=ax)
+    ax.set_title('Top 10 Movie Title Word Counts by Box Office Revenue')
+    ax.set_xlabel('Title Word Count')
+    ax.set_ylabel('Box Office Revenue (USD)')
+    ax.set_xticklabels(counts)  # Set x-axis labels
+
+    canvas = FigureCanvasTkAgg(fig, master=tab)
+    canvas.draw()
+    canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=True, anchor=tk.CENTER)
+
+# Create title word count tab
+title_word_count_tab = ttk.Frame(tab_parent)
+tab_parent.add(title_word_count_tab, text="Top 10 Title Word Counts")
+
+# Plot the top 10 movie title word counts by box office revenue in the title word count tab
+top_title_word_counts = get_top_title_word_counts_by_box_office(df)
+plot_top_title_word_counts_by_box_office(title_word_count_tab, top_title_word_counts)
 
 
+# Create conclusion tab
+conclusion_tab = ttk.Frame(tab_parent)
+tab_parent.add(conclusion_tab, text="Conclusion")
+
+# Add text to conclusion tab
+conclusion_text = tk.Text(conclusion_tab, height=20, width=100)
+conclusion_text.pack()
+
+conclusion_text.insert(tk.END, "Based on the analysis, it seems that box office sales are a major factor in the success of a movie. Anthony Russo emerged as the top director in terms of box office revenue, indicating that his movies are generally more successful at the box office. The analysis of genres showed that the top 10 combinations of genres with the highest box office sales include Drama, which is not surprising given its broad appeal. The analysis of movie title word count showed that 3-word movie titles had the highest box office sales, suggesting that shorter titles may be more appealing to audiences.\n\nThe search by year option provides users with the ability to see what year had the most top 250 IMBD films and what they were, allowing them to explore the trends and patterns in the data over time. Overall, these analyses provide insights into the factors that contribute to the success of movies, which could be useful for filmmakers, studios, and other industry professionals.")
+conclusion_text.config(state=tk.DISABLED) # Make text read-only
 
 
 window.mainloop()

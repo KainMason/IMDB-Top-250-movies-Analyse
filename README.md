@@ -30,6 +30,12 @@ git clone https://github.com/KainMason/IMDB-Top-250-movies-Analyse.git
 python main.py
 ```
 3. Explore the different visualizations and functionalities in the GUI application.
+- Home Tab : lists what the project is supposed to be interpreting
+- Genre Tab : shows what the the top 10 listed genres are based on box office sales
+-Director Tab : shows the top 10 directors based on box office sales
+-Search by Year tab :  Enter the year you want to look at in the designated area and hit enter. the result will display the movies listed in the data set for that year
+- Top 10 length of movie title tab : shows you what number of words in a movie title has the highest box office sales.
+-Conclusion tab : This tab shows you my conclusion based on what I have found
 ## Project Requirements
 
 1. Read in data from a local CSV file.

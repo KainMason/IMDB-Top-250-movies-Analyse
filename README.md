@@ -2,6 +2,34 @@
 
 This project is my Code Louisville: Data Analyst Pathway project, which focuses on analyzing and visualizing data from the top 250 movies on IMDb. As a movie enthusiast, my love for movies inspired me to pick this dataset and explore the world of cinema in a more analytical way. The data is loaded from a local CSV file, and the analysis is performed using Pandas, Matplotlib, and Seaborn. The final result is an interactive visualization using the Tkinter GUI library.
 
+## Conclusion
+
+Based on the analysis, it seems that box office sales are a major factor in the success of a movie. Anthony Russo emerged as the top director in terms of box office revenue, indicating that his movies are generally more successful at the box office. The analysis of genres showed that the top 10 combinations of genres with the highest box office sales include Drama, which is not surprising given its broad appeal. The analysis of movie title word count showed that 3-word movie titles had the highest box office sales, suggesting that shorter titles may be more appealing to audiences.
+
+The search by year option provides users with the ability to see what year had the most top 250 IMBD films and what they were, allowing them to explore the trends and patterns in the data over time. Overall, these analyses provide insights into the factors that contribute to the success of movies, which could be useful for filmmakers, studios, and other industry professionals.
+## Installation
+
+1. Clone the repository from GitHub:
+  ```
+git clone https://github.com/KainMason/IMDB-Top-250-movies-Analyse.git
+  ```
+2. Navigate to the project directory:
+- Open the project directory
+3. This project uses Python 3.10.10 which is recommended to use when running this project.
+- Install the required packages: You can run the requirements.txt file or 
+  ```
+  pip install pandas matplotlib seaborn tk
+  ```
+
+## Usage
+
+1. Navigate to the project directory:
+- Open the project directory
+2. Run the script using:
+```
+python main.py
+```
+3. Explore the different visualizations and functionalities in the GUI application.
 ## Project Requirements
 
 1. Read in data from a local CSV file.
@@ -15,6 +43,8 @@ This project is my Code Louisville: Data Analyst Pathway project, which focuses 
      - Getting the top directors by box office revenue.
      - Plotting the top directors by box office revenue.
      - Searching for movies by year.
+     - Getting the top 10 movies by number of words in title.
+     - Plotting the top 10 movies by number of words in title.
 4. Use a GUI library like Tkinter to make an interactive visualization.
    - A Tkinter GUI application is created with multiple tabs for different visualizations and functionalities.
 5. Provide a README explaining the project.
@@ -31,31 +61,9 @@ This project is my Code Louisville: Data Analyst Pathway project, which focuses 
   - Getting the top directors by box office revenue.
   - Plotting the top directors by box office revenue.
   - Searching for movies by year.
+  - Getting the top 10 movies by number of words in title.
+  - Plotting the top 10 movies by number of words in title.
 - Creates a Tkinter GUI application with multiple tabs for different visualizations and functionalities.
-
-## Installation
-
-1. Clone the repository from GitHub:
-  ```
-git clone https://github.com/KainMason/IMDB-Top-250-movies-Analyse.git
-  ```
-2. This project uses Python 3.9.13.
-- Install the required packages:
-  ```
-  pip install pandas matplotlib seaborn tk
-  ```
-
-## Usage
-
-1. Navigate to the project directory:
-```
-cd IMDB-Top-250-movies-Analyse
-```
-2. Run the script using:
-```
-python main.py
-```
-3. Explore the different visualizations and functionalities in the GUI application.
 
 ## License
 

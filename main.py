@@ -48,7 +48,7 @@ def plot_num_movies_by_genre(tab, genre_counts):
     canvas.draw()
     canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=True, anchor=tk.CENTER)
 
-# Define a function to get the top directors by box office revenue
+# Define a funct. to get the top directors by box office revenue
 def get_top_directors_by_box_office(df, num_directors=10):
     director_revenues = {}
     

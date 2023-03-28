@@ -4,7 +4,7 @@ import seaborn as sns
 import tkinter as tk
 from tkinter import ttk
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-
+import matplotlib.patches as mpatches
 
 # Load the data from the CSV file
 df = pd.read_csv('moviesData.csv')
@@ -25,7 +25,7 @@ def get_top_genres_by_num_movies(df, num_genres=10):
     return genre_counts
 
 # Define a function to plot the number of movies by genre
-import matplotlib.patches as mpatches
+
 
 def plot_num_movies_by_genre(tab, genre_counts):
     fig, ax = plt.subplots()
@@ -72,7 +72,7 @@ def get_top_directors_by_box_office(df, num_directors=10):
     return top_directors
 
 # Define a function to plot the top directors by box office revenue
-import matplotlib.patches as mpatches
+
 
 def plot_top_directors_by_box_office(tab, top_directors):
     fig, ax = plt.subplots()
